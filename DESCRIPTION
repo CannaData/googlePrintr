@@ -6,7 +6,8 @@ Authors@R: c(
   person("CannaData Solutions", role = "cph")
   )
 Description: Allows printing documents from R through 'Google Cloud Print' API.
-Imports: googleAuthR, jsonlite
+Imports: googleAuthR (>= 0.5.1.9000), jsonlite
+Remotes: MarkEdmondson1234/googleAuthR
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
