@@ -159,6 +159,10 @@ gcp_submit <- function(printerid,
       contentType = '',
       tag = ''
     ),
+    customConfig = list(
+      # https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+      encode = "multipart"
+    ),
     checkTrailingSlash = FALSE
   )
   
