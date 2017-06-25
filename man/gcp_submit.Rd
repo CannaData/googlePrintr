@@ -4,8 +4,27 @@
 \alias{gcp_submit}
 \title{Submit print job to printer}
 \usage{
-gcp_submit(printerid, title, ticket, content, contentType, tag)
+gcp_submit(printerid, title, ticket = NULL, content, contentType = NULL,
+  tag = NULL, http_header = c("GET", "POST"))
+}
+\arguments{
+\item{printerid}{The ID of the printer}
+
+\item{title}{Title of print job}
+
+\item{ticket}{Print ticket, see notes}
+
+\item{content}{Document to print, see notes}
+
+\item{contentType}{MIME type of document to print}
+
+\item{tag}{Tags to add to print job}
+
+\item{http_header}{Either GET or POST, but only GET works at moment}
 }
 \description{
 Submit print job to printer
+}
+\note{
+See \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
 }

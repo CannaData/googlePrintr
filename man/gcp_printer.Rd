@@ -4,8 +4,18 @@
 \alias{gcp_printer}
 \title{Get details about printer}
 \usage{
-gcp_printer(printerid, client, extra_fields)
+gcp_printer(printerid, client = NULL, extra_fields = NULL)
+}
+\arguments{
+\item{printerid}{The ID of the printer}
+
+\item{client}{See notes}
+
+\item{extra_fields}{Comma separated list of extra fields to include}
 }
 \description{
 Get details about printer
+}
+\note{
+Client field lets user augment printer capabilities see \url{https://developers.google.com/cloud-print/docs/appInterfaces#printer}
 }

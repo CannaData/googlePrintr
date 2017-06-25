@@ -8,8 +8,19 @@ gcp_search(name = NULL, type = NULL, connection_status = NULL,
   use_cdd = NULL, extra_fields = NULL)
 }
 \arguments{
-\item{name}{String for searching printer names}
+\item{name}{Query printer names}
+
+\item{type}{Query printer type, see notes}
+
+\item{connection_status}{Query connection status, see notes}
+
+\item{use_cdd}{Indicate whether to include printer info}
+
+\item{extra_fields}{Comma separated list of extra fields to include}
 }
 \description{
 List printers associated with Google account
+}
+\note{
+For info about parameters see \url{https://developers.google.com/cloud-print/docs/appInterfaces#search}
 }
