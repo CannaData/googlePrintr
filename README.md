@@ -19,8 +19,24 @@ devtools::install_github("CannaData/googlePrintr")
 Example
 -------
 
-This is a basic example which shows you how to solve a common problem:
+Printing:
 
 ``` r
-## basic example code
+library(googleAuthR)
+library(googlePrintr)
+options("googleAuthR.scopes.selected" = c("https://www.googleapis.com/auth/cloudprint"))
+options("googleAuthR.ok_content_types"= c(getOption("googleAuthR.ok_content_types"),
+                                          "text/plain"))
+
+# login using googleAuthR
+gar_auth_service("my.json", scope = c("https://www.googleapis.com/auth/cloudprint"))
+
+printer <- gcp_search("myPrinter")
+
+gcp_submit(printer$id[1], 
+           "New Title",
+           content = 
+             "<h1>Hello World</h1>",
+           contentType = "text/html"
+           )
 ```
