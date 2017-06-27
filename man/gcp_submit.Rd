@@ -5,7 +5,7 @@
 \title{Submit print job to printer}
 \usage{
 gcp_submit(printerid, title, ticket = NULL, content, contentType = NULL,
-  tag = NULL, http_header = c("GET", "POST"))
+  tag = NULL)
 }
 \arguments{
 \item{printerid}{The ID of the printer}
@@ -19,8 +19,6 @@ gcp_submit(printerid, title, ticket = NULL, content, contentType = NULL,
 \item{contentType}{MIME type of document to print}
 
 \item{tag}{Tags to add to print job}
-
-\item{http_header}{Either GET or POST, but only GET works at moment}
 }
 \description{
 Submit print job to printer

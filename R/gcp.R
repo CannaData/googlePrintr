@@ -128,7 +128,6 @@ gcp_processinvite <- function(printerid, accept = TRUE) {
 #' @param content Document to print, see notes
 #' @param contentType MIME type of document to print
 #' @param tag Tags to add to print job
-#' @param http_header Either GET or POST, but only GET works at moment
 #' @note See \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
 #'
 #' @export
@@ -139,41 +138,25 @@ gcp_submit <- function(printerid,
                        ticket = NULL,
                        content,
                        contentType = NULL,
-                       tag = NULL,
-                       http_header = c("GET", "POST")) {
-  http_header <- match.arg(http_header)
+                       tag = NULL) {
+  http_header <- "POST"
   f <- googleAuthR::gar_api_generator(
     "https://www.google.com/cloudprint/submit",
     http_header = http_header,
     data_parse_function = function(x) {
       x$success
     },
-    pars_args = list(
-      printerid = '',
-      title = '',
-      ticket = jsonlite::toJSON(list(
-        version = jsonlite::unbox("1.0"),
-        print = c()
-      ), auto_unbox = FALSE),
-      content = '',
-      contentType = '',
-      tag = ''
-    ),
-    customConfig = list(
-      # https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
-      encode = "multipart"
-    ),
+    customConfig = list(# https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+      encode = "multipart"),
     checkTrailingSlash = FALSE
   )
   
   f(
-    pars_arguments = list(
+    the_body = list(
       printerid = printerid,
       title = title,
-      ticket = ticket,
       content = content,
-      contentType = contentType,
-      tag = tag
+      contentType = contentType
     )
   )
 }
