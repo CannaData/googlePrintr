@@ -4,7 +4,7 @@
 googlePrintr
 ============
 
-The goal of googlePrintr is to connect to the Google Cloud Print API. It is depends on the awesome `googleAuthR` package.
+The goal of googlePrintr is to connect to the Google Cloud Print API. It is depends on the awesome \[`googleAuthR`\]\](<https://github.com/MarkEdmondson1234/googleAuthR>) package.
 
 Installation
 ------------
