@@ -128,16 +128,16 @@ gcp_processinvite <- function(printerid, accept = TRUE) {
 #' @param content Document to print, see notes
 #' @param contentType MIME type of document to print
 #' @param tag Tags to add to print job
-#' @note See \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
+#' @note For info about parameters see \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
 #'
 #' @export
 #'
 
 gcp_submit <- function(printerid,
                        title,
-                       ticket = NULL,
+                       ticket,
                        content,
-                       contentType = NULL,
+                       contentType,
                        tag = NULL) {
   http_header <- "POST"
   f <- googleAuthR::gar_api_generator(
@@ -157,6 +157,84 @@ gcp_submit <- function(printerid,
       title = title,
       content = content,
       contentType = contentType
+    )
+  )
+}
+
+#' Query submitted jobs
+#' 
+#' @inheritParams gcp_printer
+#' @param owner Query job owner
+#' @param status Query job status
+#' @param query Query title and tags
+#' @param offset Start search at given offset
+#' @param limit Restrict number of jobs returned
+#' @param sortorder Choose paramter to sort by
+#' @note For info about parameters see \url{https://developers.google.com/cloud-print/docs/appInterfaces#jobs}
+#' @export
+#' 
+
+gcp_jobs <-
+  function(printerid = NULL,
+           owner = NULL,
+           status = NULL,
+           query = NULL,
+           offset = NULL,
+           limit = NULL,
+           sortorder = NULL) {
+    f <- googleAuthR::gar_api_generator(
+      "https://www.google.com/cloudprint/jobs",
+      http_header = "GET",
+      data_parse_function = function(x) {
+        x$jobs
+      },
+      pars_args = list(
+        printerid = '',
+        owner = '',
+        status = '',
+        query = '',
+        offset = '',
+        limit = '',
+        sortorder = ''
+      ),
+      checkTrailingSlash = FALSE
+    )
+    
+    f(
+      pars_arguments = list(
+        printerid = printerid,
+        owner = owner,
+        status = status,
+        query = query,
+        offset = offset,
+        limit = limit,
+        sortorder = sortorder
+      )
+    )
+  }
+
+#' Delete job
+#' 
+#' @param jobid ID of job to delete
+#' @note For info about parameters see \url{https://developers.google.com/cloud-print/docs/appInterfaces#deletejob}
+#' @export
+#' 
+
+gcp_deletejob <- function(jobid) {
+  f <- googleAuthR::gar_api_generator(
+    "https://www.google.com/cloudprint/deletejob",
+    http_header = "POST",
+    data_parse_function = function(x) {
+      x$success
+    },
+    customConfig = list(# https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+      encode = "multipart"),
+    checkTrailingSlash = FALSE
+  )
+  
+  f(
+    the_body = list(
+      jobid = jobid
     )
   )
 }

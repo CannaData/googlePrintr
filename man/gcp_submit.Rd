@@ -4,8 +4,7 @@
 \alias{gcp_submit}
 \title{Submit print job to printer}
 \usage{
-gcp_submit(printerid, title, ticket = NULL, content, contentType = NULL,
-  tag = NULL)
+gcp_submit(printerid, title, ticket, content, contentType, tag = NULL)
 }
 \arguments{
 \item{printerid}{The ID of the printer}
@@ -24,5 +23,5 @@ gcp_submit(printerid, title, ticket = NULL, content, contentType = NULL,
 Submit print job to printer
 }
 \note{
-See \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
+For info about parameters see \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
 }
