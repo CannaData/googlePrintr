@@ -4,7 +4,9 @@
 \alias{gcp_submit}
 \title{Submit print job to printer}
 \usage{
-gcp_submit(printerid, title, ticket, content, contentType, tag = NULL)
+gcp_submit(printerid, title, ticket = jsonlite::toJSON(list(version =
+  jsonlite::unbox("1.0"), print = c()), auto_unbox = FALSE), content,
+  contentType, tag = NULL)
 }
 \arguments{
 \item{printerid}{The ID of the printer}
@@ -24,4 +26,6 @@ Submit print job to printer
 }
 \note{
 For info about parameters see \url{https://developers.google.com/cloud-print/docs/appInterfaces#submit}
+
+If content is a path to a file it will use \code{httr::upload_file} otherwise it well send raw content
 }
