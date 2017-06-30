@@ -107,8 +107,7 @@ gcp_processinvite <- function(printerid, accept = TRUE) {
     "https://www.google.com/cloudprint/processinvite",
     http_header = "POST",
     data_parse_function = function(x) {
-      print(x)
-      x$status
+      x$success
     },
     pars_args = list(printerid = '',
                      accept = TRUE),
@@ -151,7 +150,8 @@ gcp_submit <- function(printerid,
     data_parse_function = function(x) {
       x$success
     },
-    customConfig = list(# https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+    # https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+    customConfig = list(
       encode = "multipart"),
     checkTrailingSlash = FALSE
   )
@@ -233,7 +233,8 @@ gcp_deletejob <- function(jobid) {
     data_parse_function = function(x) {
       x$success
     },
-    customConfig = list(# https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+    # https://developers.google.com/cloud-print/docs/pythonCode#multipart-form-data
+    customConfig = list(
       encode = "multipart"),
     checkTrailingSlash = FALSE
   )
