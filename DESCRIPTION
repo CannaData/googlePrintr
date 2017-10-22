@@ -7,6 +7,7 @@ Authors@R: c(
   )
 Description: Allows printing documents from R through 'Google Cloud Print' API.
 Imports: googleAuthR (>= 0.5.1.9000), jsonlite, httr
+Suggests: drat
 Remotes: MarkEdmondson1234/googleAuthR
 License: MIT + file LICENSE
 Encoding: UTF-8
